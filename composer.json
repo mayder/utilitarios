@@ -9,11 +9,11 @@
             "email": "breno@hamy.com.br"
         }
     ],
-	"minimum-stability": "stable",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-			"nagestao\\utilitarios\\": "src/"
-		}
+            "nagestao\\utilitarios\\": "src/"
+        }
     },
     "require": {}
 }
