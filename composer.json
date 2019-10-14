@@ -1,0 +1,19 @@
+{
+    "name": "nagestao/utilitarios",
+    "description": "Utils para o projeto naGestão",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mayder",
+            "email": "breno@hamy.com.br"
+        }
+    ],
+	"minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+			"nagestao\\utilitarios\\": "src/"
+		}
+    },
+    "require": {}
+}
