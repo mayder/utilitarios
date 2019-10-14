@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Utils;
+namespace Utilitarios;
 
 /**
  * Description of Utils
