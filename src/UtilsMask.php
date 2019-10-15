@@ -24,4 +24,25 @@ class UtilsMask {
         }
     }
     
+    static function beforeSaveRemoveMascaraMoeda($valor) {
+        if($valor!=null){
+            $valor = str_replace('R$ ', '', $valor);
+            $valor = str_replace('.', '', $valor);
+            $valor = str_replace(',', '.', $valor);
+            return $valor;
+        } else {
+            return null;
+        }
+    }
+    
+    static function afterFindMoeda($valor) {
+        if($valor!=null){
+            $valor = str_replace('.', ',', $valor);
+            $valor = 'R$ '.$valor;
+            return $valor;
+        } else {
+            return null;
+        }
+    }
+    
 }
