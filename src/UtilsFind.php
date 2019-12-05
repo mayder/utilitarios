@@ -89,6 +89,7 @@ class UtilsFind {
             $data_inicio = date('Y-m-d', strtotime($data_inicio));
             $data_fim = str_replace('/', '-', $data[1]);
             $data_fim = date('Y-m-d', strtotime($data_fim));
+            // $data_fim = date('Y-m-d', strtotime("+1 days",strtotime($data_fim)));
             return $query->andWhere(['BETWEEN', $coluna, $data_inicio, $data_fim]);
         } else {
             return $query;
