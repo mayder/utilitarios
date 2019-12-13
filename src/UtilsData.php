@@ -70,4 +70,12 @@ class UtilsData {
         return $semana[$dia];
     }
     
+    static function idade($data) {
+        list($ano, $mes, $dia) = explode('-', $data);
+        $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+        $nascimento = mktime(0, 0, 0, $mes, $dia, $ano);
+        $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
+        return $idade;
+    }
+    
 }
