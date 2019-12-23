@@ -82,13 +82,13 @@ class UtilsFind {
         }
     }
     
-    static function filtroPeriodo($query, $coluna, $valor) {
+    static function filtroPeriodo($query, $coluna, $valor, $formato = 'Y-m-d') {
         if($valor!=null ) {
             $data = explode(' - ', $valor);
             $data_inicio = str_replace('/', '-', $data[0]);
-            $data_inicio = date('Y-m-d', strtotime($data_inicio));
+            $data_inicio = date($formato, strtotime($data_inicio));
             $data_fim = str_replace('/', '-', $data[1]);
-            $data_fim = date('Y-m-d', strtotime($data_fim));
+            $data_fim = date($formato, strtotime($data_fim));
             // $data_fim = date('Y-m-d', strtotime("+1 days",strtotime($data_fim)));
             return $query->andWhere(['BETWEEN', $coluna, $data_inicio, $data_fim]);
         } else {
