@@ -38,9 +38,16 @@ class UtilsData {
     static function formataDataSimpleseHoraMinutoSegundo($data) {
         if($data!=null){
             $data = explode(" ", $data);
-            $hora = explode(".", $data[1]);
-            $data = explode("-", $data[0]);
-            return $data[2]."/".$data[1]."/".$data[0]." ".$hora[0];
+            if(isset($data[1])){ $hora = explode(".", $data[1]); $hora = " ".$hora[0]; } else { $hora = ""; }
+            
+            if(strstr($data[0], '-')){
+                $data = explode("-", $data[0]);
+                return $data[2]."/".$data[1]."/".$data[0].$hora;
+            } else {
+                return $data[0].$hora;
+            }
+            
+            
         } else {
             return null;
         }
