@@ -35,6 +35,7 @@ class Utils {
     }
 
     static function formataValor($valor) {
+        $valor = str_replace('R$ ', '', $valor);
         if ($valor != 0 && $valor != null) {
             return 'R$ ' . number_format($valor, 2, ',', '.');
         }
