@@ -13,7 +13,8 @@ namespace nagestao\utilitarios;
  *
  * @author breno.mayder
  */
-class UtilsDocumento {
+class UtilsDocumento
+{
 
     /**
      * isCpfValid
@@ -32,7 +33,8 @@ class UtilsDocumento {
      * @return	boolean						"true" se o cpf é válido ou "false" caso o contrário
      *
      */
-    public static function isCpfValid($cpf) {
+    public static function isCpfValid($cpf)
+    {
         //Etapa 1: Cria um array com apenas os digitos numéricos, isso permite receber o cpf em diferentes formatos como "000.000.000-00", "00000000000", "000 000 000 00" etc...
         $j = 0;
         for ($i = 0; $i < (strlen($cpf)); $i++) {
@@ -107,31 +109,31 @@ class UtilsDocumento {
         return $isCpfValid;
     }
 
-    public static function isCnpjValid($cnpj) {
+    public static function isCnpjValid($cnpj)
+    {
         $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
         // Valida tamanho
         if (strlen($cnpj) != 14)
             return false;
         // Valida primeiro dígito verificador
-        for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++)
-        {
-            $soma += $cnpj{$i} * $j;
+        for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++) {
+            $soma += $cnpj[$i] * $j;
             $j = ($j == 2) ? 9 : $j - 1;
         }
         $resto = $soma % 11;
-        if ($cnpj{12} != ($resto < 2 ? 0 : 11 - $resto))
+        if ($cnpj[12] != ($resto < 2 ? 0 : 11 - $resto))
             return false;
         // Valida segundo dígito verificador
-        for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++)
-        {
-            $soma += $cnpj{$i} * $j;
+        for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++) {
+            $soma += $cnpj[$i] * $j;
             $j = ($j == 2) ? 9 : $j - 1;
         }
         $resto = $soma % 11;
-        return $cnpj{13} == ($resto < 2 ? 0 : 11 - $resto);
+        return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
     }
-    
-    static function getBrowser() {
+
+    static function getBrowser()
+    {
         $u_agent = $_SERVER['HTTP_USER_AGENT'];
         $bname = 'Unknown';
         $platform = 'Unknown';
@@ -170,7 +172,7 @@ class UtilsDocumento {
         // finally get the correct version number
         $known = array('Version', $ub, 'other');
         $pattern = '#(?<browser>' . join('|', $known) .
-                ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+            ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
         if (!preg_match_all($pattern, $u_agent, $matches)) {
             // we have no matching number just continue
         }
@@ -203,7 +205,8 @@ class UtilsDocumento {
         );
     }
 
-    static function curl_get_contents($url) {
+    static function curl_get_contents($url)
+    {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -214,7 +217,8 @@ class UtilsDocumento {
         return $data;
     }
 
-    static function sanitizeString($string) {
+    static function sanitizeString($string)
+    {
 
         // matriz de entrada
         $what = array('ä', 'ã', 'à', 'á', 'â', 'ê', 'ë', 'è', 'é', 'ï', 'ì', 'í', 'ö', 'õ', 'ò', 'ó', 'ô', 'ü', 'ù', 'ú', 'û', 'À', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ', 'ç', 'Ç');
@@ -225,5 +229,4 @@ class UtilsDocumento {
         // devolver a string
         return str_replace($what, $by, $string);
     }
-
 }
